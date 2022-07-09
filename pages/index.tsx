@@ -1,8 +1,13 @@
 import type { NextPage } from "next";
-import Head from "next/head";
-import Image from "next/image";
+import { getProviders, signIn, signOut, useSession } from "next-auth/react";
 
-const Home: NextPage = () => {
+interface Props {
+  providers: object[];
+}
+
+const Home: NextPage<Props> = (props) => {
+  const { data: session }: any = useSession();
+  console.log(props.providers);
   const handleAddArtist = async (e: any) => {
     e.preventDefault();
     try {
@@ -21,29 +26,37 @@ const Home: NextPage = () => {
       alert(err);
     }
   };
+  if (session) {
+    console.log(session);
+    return (
+      <>
+        Signed in as {session.user.email} <br />
+        <button onClick={handleAddArtist}>Add new artist</button>
+        <br className="mb-5" />
+        <button onClick={() => signOut()}>Sign out</button>
+      </>
+    );
+  }
   return (
     <div className="flex min-h-screen flex-col items-center justify-center py-2">
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
       <main>
-        <button onClick={handleAddArtist}>Add new artist</button>
+        <button
+          className="bg-[#18D860] text-white p-5"
+          onClick={() => signIn()}>
+          Login with Google
+        </button>
       </main>
-
-      <footer className="flex h-24 w-full items-center justify-center border-t">
-        <a
-          className="flex items-center justify-center gap-2"
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer">
-          Powered by{" "}
-          <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-        </a>
-      </footer>
     </div>
   );
 };
 
 export default Home;
+
+export async function getServerSideProps(context: any) {
+  const providers = await getProviders();
+  return {
+    props: {
+      providers,
+    },
+  };
+}
