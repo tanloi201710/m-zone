@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+    .input {
+        @apply bg-[#ffffff1a] border-[#78828c33] border-[1px] px-2 py-2 text-base w-72 outline-none mb-3
+    }
+}
+
+#checkbox-one:checked ~ svg {
+    @apply opacity-100;
+}

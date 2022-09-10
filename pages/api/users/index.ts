@@ -19,15 +19,16 @@ export default async function handler(
     case "GET":
       try {
         await connectToDatabase();
-        if (req.query.id !== "") {
-          const user = await User.findById(req.query.id);
+        if (req.query.email !== "") {
+          const user = await User.find({ email: req.query.email });
           res.status(200).json({ success: true, data: user });
+          break;
         }
         const users = await User.find();
         res.status(200).json({ success: true, data: users });
       } catch (err) {
         console.log(err);
-        res.status(404).json({ success: false, message: "User not found!" });
+        res.json({ success: false, message: "User not found!" });
       }
       break;
 

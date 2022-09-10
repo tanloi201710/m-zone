@@ -1,5 +1,8 @@
 import type { NextPage } from "next";
 import { getProviders, signIn, signOut, useSession } from "next-auth/react";
+import Player from "../components/Player";
+import Sidebar from "../components/Sidebar";
+import { albums } from "../utils/constants";
 
 interface Props {
   providers: object[];
@@ -26,27 +29,20 @@ const Home: NextPage<Props> = (props) => {
       alert(err);
     }
   };
-  if (session) {
-    console.log(session);
-    return (
-      <>
-        Signed in as {session.user.email} <br />
-        <button onClick={handleAddArtist}>Add new artist</button>
-        <br className="mb-5" />
-        <button onClick={() => signOut()}>Sign out</button>
-      </>
-    );
-  }
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center py-2">
-      <main>
-        <button
-          className="bg-[#18D860] text-white p-5"
-          onClick={() => signIn()}>
-          Login with Google
-        </button>
-      </main>
-    </div>
+    <>
+      <div className="flex h-[calc(100vh_-_55px)]">
+        {/* Sidebar */}
+        <div className="overflow-hidden xl:overflow-auto bg-[#30363c] relative">
+          <Sidebar />
+        </div>
+        {/* Main */}
+        <div className="flex flex-col gap-10 overflow-auto flex-1 bg-[#363c43] text-gray-200">
+          <h1>This is main section</h1>
+        </div>
+      </div>
+      <Player album={albums[3]} />
+    </>
   );
 };
 

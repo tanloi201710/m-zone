@@ -11,22 +11,23 @@ export interface IUser extends Document {
 
 const UserSchema: Schema = new Schema(
   {
-    userName: {
+    name: {
+      type: String,
+    },
+    email: {
       type: String,
       required: true,
     },
     password: {
       type: String,
-      required: true,
     },
-    imageUrl: {
+    image: {
       type: String,
-    },
-    fullName: {
-      type: String,
+      default: "https://i.dlpng.com/static/png/7048718_preview.png",
     },
     musicType: {
       type: String,
+      default: "Pop",
     },
     likes: [
       {
