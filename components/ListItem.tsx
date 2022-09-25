@@ -12,15 +12,14 @@ interface Props {
 
 const ListItem: NextPage<Props> = ({ item }) => {
   const router = useRouter();
-  const { tab } = router.query;
+  const tab = router.query.tab || "Discover";
   const active: boolean = item.name === tab;
-
   return (
     <li key={item.name}>
       <Link href={`/?tab=${item.name}`}>
         <div
-          className={`px-2 my-[2px] h-7 hover:bg-[#ffffff11] ${
-            active ? "bg-[#02b875]" : ""
+          className={`px-2 my-[2px] h-7 ${
+            active ? "bg-[#02b875]" : "hover:bg-[#ffffff11]"
           } cursor-pointer rounded-[3px]`}>
           <span
             className={`float-left flex items-center h-7 mr-4 min-w-[1.5rem] ${

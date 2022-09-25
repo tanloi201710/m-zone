@@ -46,7 +46,7 @@ export const collections = [
 
 export const albums = [
   {
-    name: "Album 1",
+    name: "I Wanna Be In the Cavalry",
     artist: "John Doe",
     image: "album1.jpg",
   },
@@ -69,5 +69,48 @@ export const albums = [
     name: "Album 5",
     artist: "Laura Swift",
     image: "album5.jpg",
+  },
+  {
+    name: "Album 6",
+    artist: "Kevin Smith",
+    image: "album6.jpg",
+  },
+  {
+    name: "Album 7",
+    artist: "Victoria",
+    image: "album7.jpg",
+  },
+  {
+    name: "Album 8",
+    artist: "Laura Swift",
+    image: "album8.jpg",
+  },
+];
+
+export const likes = [
+  {
+    name: "Album 4",
+    artist: "Victoria",
+    image: "album4.jpg",
+  },
+  {
+    name: "Album 5",
+    artist: "Laura Swift",
+    image: "album5.jpg",
+  },
+  {
+    name: "Album 6",
+    artist: "Kevin Smith",
+    image: "album6.jpg",
+  },
+  {
+    name: "Album 7",
+    artist: "Victoria",
+    image: "album7.jpg",
+  },
+  {
+    name: "Album 8",
+    artist: "Laura Swift",
+    image: "album8.jpg",
   },
 ];

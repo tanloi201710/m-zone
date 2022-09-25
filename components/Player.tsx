@@ -62,7 +62,7 @@ const Player: NextPage<Props> = ({ album }) => {
               <ImPrevious2 size={18} />
             </button>
             <button className="w-10 h-10 flex justify-center items-center bg-[#02b875] rounded-full">
-              <IoMdPlay size={18} className="ml-1" />
+              <IoMdPlay size={18} className="ml-[3px]" />
             </button>
             <button className="w-10 h-10 flex justify-center items-center">
               <ImNext2 size={18} />

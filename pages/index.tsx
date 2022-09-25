@@ -1,5 +1,6 @@
 import type { NextPage } from "next";
 import { getProviders, signIn, signOut, useSession } from "next-auth/react";
+import MainContent from "../components/MainContent";
 import Player from "../components/Player";
 import Sidebar from "../components/Sidebar";
 import { albums } from "../utils/constants";
@@ -38,7 +39,7 @@ const Home: NextPage<Props> = (props) => {
         </div>
         {/* Main */}
         <div className="flex flex-col gap-10 overflow-auto flex-1 bg-[#363c43] text-gray-200">
-          <h1>This is main section</h1>
+          <MainContent />
         </div>
       </div>
       <Player album={albums[3]} />

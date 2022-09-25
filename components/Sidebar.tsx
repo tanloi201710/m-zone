@@ -55,7 +55,7 @@ const Sidebar = () => {
     }
   }, []);
   return (
-    <div className="w-[200px] hidden md:block">
+    <div className="w-[200px] hidden lg:block">
       {/* Logo */}
       <div className="min-h-[56px] flex items-center">
         <Link href="/">

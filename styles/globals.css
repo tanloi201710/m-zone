@@ -6,8 +6,59 @@
     .input {
         @apply bg-[#ffffff1a] border-[#78828c33] border-[1px] px-2 py-2 text-base w-72 outline-none mb-3
     }
+
+    /* 
+    .swiper-container .swiper-button-prev::after,
+    .swiper-container .swiper-button-next::after {
+        content: "";
+    } */
 }
 
-#checkbox-one:checked ~ svg {
+#checkbox-one:checked~svg {
     @apply opacity-100;
+}
+
+.swiper-button-prev::after {
+    content: "\2039" !important;
+    color: #fff !important;
+    font-size: 30px !important;
+}
+
+.swiper-button-next::after {
+    content: "\203a" !important;
+    color: #fff !important;
+    font-size: 30px !important;
+}
+
+.discover-swiper .custom-pagination {
+    background-color: #fff !important;
+    width: 10px !important;
+    height: 1px !important;
+    border-radius: 0 !important;
+}
+
+.discover-swiper .swiper-pagination-bullet-active {
+    width: 16px !important;
+}
+
+.discover-swiper .swiper-pagination {
+    text-align: left !important;
+    padding: 0px 10px;
+}
+
+.trending-swiper .swiper-pagination {
+    bottom: -5px !important;
+}
+
+.trending-swiper .custom-pagination {
+    width: 8px !important;
+    height: 8px !important;
+    border: 1px solid rgba(255, 255, 255, 0.7) !important;
+    background-color: transparent !important;
+    border-radius: 100px;
+}
+
+.trending-swiper .swiper-pagination-bullet-active {
+    width: 18px !important;
+    background-color: rgba(255, 255, 255, 0.7) !important;
 }
