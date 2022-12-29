@@ -31,8 +31,9 @@ const RecommandCard: NextPage<Props> = ({ album }) => {
           <div className="min-w-[60px] min-h-[60px] cursor-pointer mr-3">
             <Image
               src={`/${album.image}`}
-              width="100%"
-              height="100%"
+              width="100"
+              height="100"
+              alt=""
               layout="responsive"
               className="rounded-sm"
               objectFit="cover"

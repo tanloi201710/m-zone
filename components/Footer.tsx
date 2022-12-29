@@ -19,8 +19,9 @@ const Footer = () => {
             <div className="w-10 h-10 cursor-pointer">
               <Image
                 src={`/${value.image}`}
-                width="100%"
-                height="100%"
+                width="100"
+                height="100"
+                alt=""
                 layout="responsive"
                 className="rounded-sm"
                 objectFit="cover"

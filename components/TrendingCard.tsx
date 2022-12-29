@@ -16,8 +16,9 @@ const TrendingCard: NextPage<Props> = ({ info }) => {
       <div className=" w-full h-full rounded-sm overflow-hidden">
         <Image
           src={`/${info.image}`}
-          width="100%"
-          height="80%"
+          width="100"
+          height="80"
+          alt=""
           layout="responsive"
           objectFit="cover"
         />

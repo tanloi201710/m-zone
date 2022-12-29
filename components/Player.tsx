@@ -30,6 +30,7 @@ const Player: NextPage<Props> = ({ album }) => {
             src={`/${album.image}`}
             width={60}
             height={60}
+            alt=""
             layout="intrinsic"
           />
           <div className="flex flex-col flex-1 border-t-[5px] border-t-gray-500/75 pl-4 justify-center">

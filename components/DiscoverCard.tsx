@@ -36,8 +36,9 @@ const DiscoverCard: NextPage<Props> = ({ album, mark = true }) => {
       )}
       <Image
         src={`/${album.image}`}
-        width="100%"
-        height="100%"
+        width="100"
+        height="100"
+        alt=""
         layout="responsive"
         className="rounded-sm"
         objectFit="cover"
