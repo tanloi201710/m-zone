@@ -11,7 +11,6 @@ interface Props {
 
 const Home: NextPage<Props> = (props) => {
   const { data: session }: any = useSession();
-  console.log(props.providers);
   const handleAddArtist = async (e: any) => {
     e.preventDefault();
     try {

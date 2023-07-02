@@ -13,7 +13,7 @@ interface Props {
 const TrendingCard: NextPage<Props> = ({ info }) => {
   return (
     <div>
-      <div className=" w-full h-full rounded-sm overflow-hidden">
+      <div className=" w-full rounded-sm overflow-hidden">
         <Image
           src={`/${info.image}`}
           width="100"

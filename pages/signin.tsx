@@ -8,7 +8,6 @@ interface Props {
 }
 
 const SignIn: NextPage<Props> = (props) => {
-  console.log(props.providers);
   return (
     <>
       <div className="w-full h-screen bg-[#30363c]">

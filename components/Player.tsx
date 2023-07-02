@@ -23,7 +23,7 @@ const Player: NextPage<Props> = ({ album }) => {
   const [isRepeat, setIsRepeat] = useState<boolean>(false);
   return (
     <>
-      <div className="h-[55px] bg-[#363c43] flex text-gray-200 overflow-y-hidden">
+      <div className="h-[55px] bg-[#363c43] flex text-gray-200 overflow-y-hidden justify-between">
         {/* info */}
         <div className="flex min-w-[200px]">
           <Image
@@ -39,7 +39,7 @@ const Player: NextPage<Props> = ({ album }) => {
           </div>
         </div>
         {/* main */}
-        <div className="flex flex-1 justify-between items-center border-t-[5px] border-t-gray-500/75">
+        <div className="hidden flex-1 justify-between items-center border-t-[5px] border-t-gray-500/75 md:flex">
           {/* like */}
           <button
             className="w-7 h-7 rounded-[0.2rem] flex justify-center items-center hover:bg-[#ffffff11] mx-4"
@@ -91,6 +91,29 @@ const Player: NextPage<Props> = ({ album }) => {
               <BsList size={18} />
             </button>
           </div>
+        </div>
+        {/* Mobile view */}
+        <div className="flex items-center float-right md:hidden">
+          <button
+            className="w-7 h-7 rounded-[0.2rem] flex justify-center items-center hover:bg-[#ffffff11] mx-4"
+            onClick={() => setIsLiked((prev) => !prev)}>
+            {isLiked ? (
+              <MdFavorite size={18} />
+            ) : (
+              <MdFavoriteBorder size={18} />
+            )}
+          </button>
+          <button className="w-10 h-10 flex justify-center items-center bg-[#02b875] rounded-full">
+            <IoMdPlay size={18} className="ml-[3px]" />
+          </button>
+          <button className="w-10 h-10 flex justify-center items-center">
+            <ImNext2 size={18} />
+          </button>
+          <button
+            className="w-10 h-10 flex justify-center items-center"
+            onClick={() => setOpenPlayList((prev) => !prev)}>
+            <BsList size={18} />
+          </button>
         </div>
       </div>
       {openPlayList && (

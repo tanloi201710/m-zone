@@ -48,42 +48,42 @@ export const albums = [
   {
     name: "I Wanna Be In the Cavalry",
     artist: "John Doe",
-    image: "album1.jpg",
+    image: "album10.jpg",
   },
   {
     name: "Album 2",
     artist: "Jack Sparow",
-    image: "album2.jpg",
+    image: "album11.jpg",
   },
   {
     name: "Album 3",
     artist: "Kevin Smith",
-    image: "album3.jpg",
+    image: "album12.jpg",
   },
   {
     name: "Album 4",
     artist: "Victoria",
-    image: "album4.jpg",
+    image: "album13.jpg",
   },
   {
     name: "Album 5",
     artist: "Laura Swift",
-    image: "album5.jpg",
+    image: "album14.jpg",
   },
   {
     name: "Album 6",
     artist: "Kevin Smith",
-    image: "album6.jpg",
+    image: "album15.jpg",
   },
   {
     name: "Album 7",
     artist: "Victoria",
-    image: "album7.jpg",
+    image: "album16.jpg",
   },
   {
     name: "Album 8",
     artist: "Laura Swift",
-    image: "album8.jpg",
+    image: "album17.jpg",
   },
 ];
 
@@ -91,26 +91,26 @@ export const likes = [
   {
     name: "Album 4",
     artist: "Victoria",
-    image: "album4.jpg",
+    image: "album10.jpg",
   },
   {
     name: "Album 5",
     artist: "Laura Swift",
-    image: "album5.jpg",
+    image: "album11.jpg",
   },
   {
     name: "Album 6",
     artist: "Kevin Smith",
-    image: "album6.jpg",
+    image: "album12.jpg",
   },
   {
     name: "Album 7",
     artist: "Victoria",
-    image: "album7.jpg",
+    image: "album13.jpg",
   },
   {
     name: "Album 8",
     artist: "Laura Swift",
-    image: "album8.jpg",
+    image: "album14.jpg",
   },
 ];
