@@ -53,7 +53,7 @@ const MainContent = () => {
             {/* Recommand for you */}
             <Recommand />
           </div>
-          <div className="min-w-[344px] lg:pl-6 h-[590px] sticky top-0 flex-grow">
+          <div className="md:min-w-[344px] lg:pl-6 h-[590px] sticky top-0 flex-grow">
             {/* Footer */}
             <Footer />
           </div>

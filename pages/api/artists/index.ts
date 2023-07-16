@@ -14,10 +14,11 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
+  await connectToDatabase();
+
   switch (req.method) {
     case "GET":
       try {
-        await connectToDatabase();
         if (req.query.id !== "") {
           const artist = await Artist.findById(req.query.id);
           res.status(200).json({ success: true, data: artist });
@@ -32,7 +33,6 @@ export default async function handler(
 
     case "POST":
       try {
-        await connectToDatabase();
         const data: IArtist = JSON.parse(req.body);
         const newArtist = new Artist(data);
         const savedArtist = await newArtist.save();
@@ -45,7 +45,6 @@ export default async function handler(
     case "DELETE":
       try {
         const { id } = req.query;
-        await connectToDatabase();
         await Artist.findByIdAndDelete(id);
         res.status(200).json({ success: true, message: "Artist deleted!" });
       } catch (err) {
@@ -58,7 +57,6 @@ export default async function handler(
     case "PUT":
       try {
         const { id } = req.query;
-        await connectToDatabase();
         const dataUpdate = JSON.parse(req.body);
         const updatedArtist = Artist.findByIdAndUpdate(id, dataUpdate, {
           new: true,

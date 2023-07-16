@@ -11,7 +11,8 @@ const ProfileMenu = ({ profileMenuEl, blur }: any) => {
       className="rounded-[3px] text-gray-600 text-sm py-1 absolute bottom-14 bg-white w-full outline-none"
       tabIndex={0}
       ref={profileMenuEl}
-      onBlur={blur}>
+      onBlur={blur}
+    >
       <ul>
         <li className="leading-7 cursor-pointer hover:bg-gray-200 px-4">
           <Link href="/?tab=profile">Profile</Link>
@@ -39,7 +40,7 @@ const ProfileMenu = ({ profileMenuEl, blur }: any) => {
   );
 };
 
-const Sidebar = () => {
+const Sidebar = ({ user }: {user: { name: string; image: string; email: string }}) => {
   const active = false;
   const [isOpenProfileMenu, setIsOpenProfileMenu] = useState<boolean>(false);
 
@@ -95,9 +96,10 @@ const Sidebar = () => {
       <div className="absolute w-full bottom-0 left-0 px-4 py-3">
         <div
           className="flex items-center gap-3 cursor-pointer"
-          onClick={() => setIsOpenProfileMenu((prev) => !prev)}>
+          onClick={() => setIsOpenProfileMenu((prev) => !prev)}
+        >
           <Image
-            src="/album5.jpg"
+            src={user.image}
             width={32}
             height={32}
             alt="profile"
@@ -105,7 +107,8 @@ const Sidebar = () => {
             className="rounded-full overflow-hidden"
           />
           <span className="text-gray-200 text-sm font-bold">
-            Rachel Platten
+            {/* Rachel Platten */}
+            {user.name}
           </span>
         </div>
       </div>

@@ -23,9 +23,9 @@ const Player: NextPage<Props> = ({ album }) => {
   const [isRepeat, setIsRepeat] = useState<boolean>(false);
   return (
     <>
-      <div className="h-[55px] bg-[#363c43] flex text-gray-200 overflow-y-hidden justify-between">
+      <div className="h-[55px] bg-[#363c43] flex text-gray-200 overflow-x-hidden justify-between">
         {/* info */}
-        <div className="flex min-w-[200px]">
+        <div className="flex min-w-[180px]">
           <Image
             src={`/${album.image}`}
             width={60}

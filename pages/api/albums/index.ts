@@ -14,11 +14,12 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
+  await connectToDatabase();
+
   switch (req.method) {
     // Get data
     case "GET":
       try {
-        await connectToDatabase();
         if (req.query.id !== "") {
           const album = await Album.findById(req.query.id);
           res.status(200).json({ success: true, data: album });
@@ -34,7 +35,6 @@ export default async function handler(
     //   Add data
     case "POST":
       try {
-        await connectToDatabase();
         const data: IAlbum = JSON.parse(req.body);
         const newAlbum = new Album(data);
         const savedAlbum = await newAlbum.save();
@@ -48,7 +48,6 @@ export default async function handler(
     case "DELETE":
       try {
         const { id } = req.query;
-        await connectToDatabase();
         await Album.findByIdAndDelete(id);
         res.status(200).json({ success: true, message: "Album deleted!" });
       } catch (err) {
@@ -62,7 +61,6 @@ export default async function handler(
     case "PUT":
       try {
         const { id } = req.query;
-        await connectToDatabase();
         const dataUpdate = JSON.parse(req.body);
         const updatedAlbum = Album.findByIdAndUpdate(id, dataUpdate, {
           new: true,

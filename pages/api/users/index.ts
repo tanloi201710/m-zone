@@ -14,11 +14,12 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
+  await connectToDatabase();
+
   switch (req.method) {
     // Get data
     case "GET":
       try {
-        await connectToDatabase();
         if (req.query.email !== "") {
           const user = await User.find({ email: req.query.email });
           res.status(200).json({ success: true, data: user });
@@ -35,7 +36,6 @@ export default async function handler(
     //   Add data
     case "POST":
       try {
-        await connectToDatabase();
         const data: IUser = JSON.parse(req.body);
         const newUser = new User(data);
         const savedUser = await newUser.save();
@@ -49,7 +49,6 @@ export default async function handler(
     case "DELETE":
       try {
         const { id } = req.query;
-        await connectToDatabase();
         await User.findByIdAndDelete(id);
         res.status(200).json({ success: true, message: "User deleted!" });
       } catch (err) {
@@ -63,7 +62,6 @@ export default async function handler(
     case "PUT":
       try {
         const { id } = req.query;
-        await connectToDatabase();
         const dataUpdate = JSON.parse(req.body);
         const updatedUser = User.findByIdAndUpdate(id, dataUpdate, {
           new: true,
