@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import { albums } from "../utils/constants";
+import { NextPage } from "next";
 import DiscoverCard from "./DiscoverCard";
 import DiscoverSlider from "./DiscoverSlider";
 import Footer from "./Footer";
@@ -9,8 +9,21 @@ import Recommand from "./Recommand";
 import Trending from "./Trending";
 import { SiApplemusic } from "react-icons/si";
 import { IoMdMenu } from "react-icons/io";
+import { ZingAlbum, ZingSong } from "../types";
 
-const MainContent = () => {
+interface Props {
+  discovers: ZingAlbum[];
+  trendings: ZingSong[];
+  news: ZingSong[];
+  recommands: ZingSong[];
+}
+
+const MainContent: NextPage<Props> = ({
+  discovers,
+  trendings,
+  news,
+  recommands,
+}) => {
   return (
     <>
       <div className="flex lg:hidden justify-between items-center bg-[#3c424a] shadow-lg sticky top-0 z-50">
@@ -36,20 +49,24 @@ const MainContent = () => {
           <h1 className="text-[40px] font-bold mb-4">Discover</h1>
           <div className="grid grid-cols-4 gap-4">
             {/* discover slide */}
-            <DiscoverSlider props={albums} />
+            <DiscoverSlider albums={discovers} />
             {/* discover cards */}
-            <DiscoverCard album={albums[3]} />
-            <DiscoverCard album={albums[5]} />
-            <DiscoverCard album={albums[6]} />
-            <DiscoverCard album={albums[7]} />
+            {discovers.length > 0 && (
+              <>
+                <DiscoverCard album={discovers[0]} />
+                <DiscoverCard album={discovers[1]} />
+                <DiscoverCard album={discovers[2]} />
+                <DiscoverCard album={discovers[3]} />
+              </>
+            )}
           </div>
         </div>
         <div className="flex w-full flex-wrap flex-col lg:flex-row">
           <div className="w-full lg:max-w-[calc(100vw_-_609px)] lg:pr-6 py-6 lg:border-r-[1px] lg:border-r-[#78828c21] flex-grow-[999]">
             {/* Trending */}
-            <Trending />
+            <Trending songs={trendings} />
             {/* New */}
-            <New />
+            <New songs={news} />
             {/* Recommand for you */}
             <Recommand />
           </div>

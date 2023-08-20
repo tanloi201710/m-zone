@@ -1,13 +1,10 @@
 import { NextPage } from "next";
 import Image from "next/image";
 import React from "react";
+import { ZingSong } from "../types";
 
 interface Props {
-  info: {
-    name: string;
-    artist: string;
-    image: string;
-  };
+  info: ZingSong;
 }
 
 const TrendingCard: NextPage<Props> = ({ info }) => {
@@ -15,7 +12,7 @@ const TrendingCard: NextPage<Props> = ({ info }) => {
     <div>
       <div className=" w-full rounded-sm overflow-hidden">
         <Image
-          src={`/${info.image}`}
+          src={info?.thumbnailM.replace('w240', 'w720')}
           width="100"
           height="80"
           alt=""
@@ -24,9 +21,9 @@ const TrendingCard: NextPage<Props> = ({ info }) => {
         />
       </div>
       <div className="pt-[10px] pb-[30px]">
-        <p className="text-[14px] font-semibold">{info.name}</p>
+        <p className="text-[14px] font-semibold">{info?.title}</p>
         <p className="text-[12.8px] text-gray-400 hover:text-[#687077] transition-all duration-200 cursor-pointer">
-          {info.artist}
+          {info?.artistsNames}
         </p>
       </div>
     </div>

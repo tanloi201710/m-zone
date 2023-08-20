@@ -1,37 +1,36 @@
 import type { NextPage } from "next";
-import { getProviders, getSession, signIn, signOut, useSession } from "next-auth/react";
+import { getSession } from "next-auth/react";
 import MainContent from "../components/MainContent";
 import Player from "../components/Player";
 import Sidebar from "../components/Sidebar";
 import { albums } from "../utils/constants";
+import { useSongsStore } from "../store/useSongsStore";
+import { useEffect } from "react";
 
 interface Props {
   session: {
-    user: { name: string; image: string; email: string },
-    expires: string,
+    user: { name: string; image: string; email: string };
+    expires: string;
   };
 }
 
 const Home: NextPage<Props> = (props) => {
-  console.log(props.session);
-  // const handleAddArtist = async (e: any) => {
-  //   e.preventDefault();
-  //   try {
-  //     const { origin } = window.location;
-  //     const savedArtist = await fetch(origin + "/api/artists", {
-  //       method: "POST",
-  //       body: JSON.stringify({
-  //         name: "Vũ",
-  //         isMale: true,
-  //         age: 30,
-  //       }),
-  //     });
-  //     const { data } = await savedArtist.json();
-  //     console.log(data);
-  //   } catch (err) {
-  //     alert(err);
-  //   }
-  // };
+  const {
+    discovers,
+    trendings,
+    news,
+    recommands,
+    isLoading,
+    error,
+    fetchData,
+  } = useSongsStore();
+
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]);
+
+  const isNotData = !discovers || !trendings || !news || !recommands;
+
   return (
     <>
       <div className="flex h-[calc(100vh_-_55px)]">
@@ -41,7 +40,14 @@ const Home: NextPage<Props> = (props) => {
         </div>
         {/* Main */}
         <div className="flex flex-col gap-10 overflow-auto flex-1 bg-[#363c43] text-gray-200">
-          <MainContent />
+          {!isNotData && (
+            <MainContent
+              discovers={discovers}
+              trendings={trendings}
+              news={news}
+              recommands={recommands}
+            />
+          )}
         </div>
       </div>
       <Player album={albums[3]} />

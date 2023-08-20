@@ -5,13 +5,10 @@ import { MdFavorite } from "react-icons/md";
 import { FaEllipsisH } from "react-icons/fa";
 import { NextPage } from "next";
 import { animated, useSpring } from "@react-spring/web";
+import { ZingAlbum } from "../types";
 
 interface Props {
-  album: {
-    name: string;
-    artist: string;
-    image: string;
-  };
+  album: ZingAlbum;
   mark?: boolean;
 }
 
@@ -25,17 +22,18 @@ const DiscoverCard: NextPage<Props> = ({ album, mark = true }) => {
     <div
       className="w-full h-full relative"
       onMouseEnter={() => setActionLayer(true)}
-      onMouseLeave={() => setActionLayer(false)}>
+      onMouseLeave={() => setActionLayer(false)}
+    >
       {mark && (
-        <div className="absolute top-0 p-4 z-10 bg-gradient-to-br from-gray-700 to-transparent shadow-inner">
-          <p className="text-white text-lg font-semibold">{album.name}</p>
+        <div className="absolute top-0 p-4 z-10">
+          <p className="text-white text-lg font-semibold">{album?.title}</p>
           <p className="text-[12.8px] hover:text-[#687077] transition-all duration-200 cursor-pointer">
-            {album.artist}
+            {album?.artistsNames}
           </p>
         </div>
       )}
       <Image
-        src={`/${album.image}`}
+        src={album?.thumbnail.replace('w165', 'w1080')}
         width="100"
         height="100"
         alt=""

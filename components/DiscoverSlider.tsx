@@ -7,16 +7,13 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import DiscoverCard from "./DiscoverCard";
+import { ZingAlbum, ZingSong } from "../types";
 
 interface Props {
-  props: {
-    name: string;
-    artist: string;
-    image: string;
-  }[];
+  albums: ZingAlbum[];
 }
 
-const DiscoverSlider: NextPage<Props> = ({ props }) => {
+const DiscoverSlider: NextPage<Props> = ({ albums }) => {
   SwiperCore.use([Autoplay]);
   return (
     <div className="col-span-2 row-span-2">
@@ -38,8 +35,8 @@ const DiscoverSlider: NextPage<Props> = ({ props }) => {
         // onSlideChange={() => console.log("slide change")}
         // onSwiper={(swiper) => console.log(swiper)}
         className="discover-swiper">
-        {props.map((item, index) => (
-          <SwiperSlide key={item.name}>
+        {albums.map((item) => (
+          <SwiperSlide key={item.encodeId}>
             <DiscoverCard album={item} />
           </SwiperSlide>
         ))}

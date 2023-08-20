@@ -1,10 +1,16 @@
 import React from "react";
+import { NextPage } from "next";
 import { Pagination } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { albums } from "../utils/constants";
 import TrendingCard from "./TrendingCard";
+import { ZingSong } from "../types";
 
-const Trending = () => {
+interface Props {
+  songs: ZingSong[];
+}
+
+const Trending: NextPage<Props> = ({ songs }) => {
   return (
     <>
       <h1 className="text-2xl font-bold mb-4">Trending</h1>
@@ -23,8 +29,8 @@ const Trending = () => {
           },
         }}
         className="trending-swiper">
-        {albums.map((item, index) => (
-          <SwiperSlide key={item.name}>
+        {songs.map((item, index) => (
+          <SwiperSlide key={item.encodeId}>
             <TrendingCard info={item} />
           </SwiperSlide>
         ))}
