@@ -50,7 +50,7 @@ export const useSongsStore = create<State & Actions>((set) => ({
           ),
           trendings: data.RTChart.promotes,
           news: data.newRelease,
-          recommands: data.newRelease,
+          recommands: data.weekChart.vn.items,
           isLoading: false,
         });
       }

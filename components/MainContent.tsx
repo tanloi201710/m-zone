@@ -9,21 +9,16 @@ import Recommand from "./Recommand";
 import Trending from "./Trending";
 import { SiApplemusic } from "react-icons/si";
 import { IoMdMenu } from "react-icons/io";
-import { ZingAlbum, ZingSong } from "../types";
+import { ZingAlbum } from "../types";
+import { Sheet, SheetContent, SheetTrigger } from "./Sheet";
+import Sidebar from "./Sidebar";
 
 interface Props {
   discovers: ZingAlbum[];
-  trendings: ZingSong[];
-  news: ZingSong[];
-  recommands: ZingSong[];
+  user: { name: string; image: string; email: string };
 }
 
-const MainContent: NextPage<Props> = ({
-  discovers,
-  trendings,
-  news,
-  recommands,
-}) => {
+const MainContent: NextPage<Props> = ({ user, discovers }) => {
   return (
     <>
       <div className="flex lg:hidden justify-between items-center bg-[#3c424a] shadow-lg sticky top-0 z-50">
@@ -39,24 +34,39 @@ const MainContent: NextPage<Props> = ({
             </div>
           </Link>
         </div>
-        <button className="mr-4">
+        <Sheet>
+          <SheetTrigger>
+          <button className="mr-4">
           <IoMdMenu size={20} />
         </button>
+          </SheetTrigger>
+          <SheetContent side="left" className="p-0 bg-[#363c43]">
+            <Sidebar user={user} />
+          </SheetContent>
+        </Sheet>
       </div>
-      <div className="px-6 pt-6">
+      <div className="px-3 mt-2 sm:px-6 sm:pt-6">
         {/* Discover */}
         <div className="mb-5">
           <h1 className="text-[40px] font-bold mb-4">Discover</h1>
-          <div className="grid grid-cols-4 gap-4">
+          <div className="grid grid-cols-4 gap-2 sm:gap-4">
             {/* discover slide */}
             <DiscoverSlider albums={discovers} />
             {/* discover cards */}
             {discovers.length > 0 && (
               <>
-                <DiscoverCard album={discovers[0]} />
-                <DiscoverCard album={discovers[1]} />
-                <DiscoverCard album={discovers[2]} />
-                <DiscoverCard album={discovers[3]} />
+                <div className="col-span-2 row-span-2 sm:col-span-1 sm:row-span-1">
+                  <DiscoverCard album={discovers[0]} />
+                </div>
+                <div className="col-span-2 row-span-2 sm:col-span-1 sm:row-span-1">
+                  <DiscoverCard album={discovers[1]} />
+                </div>
+                <div className="col-span-2 row-span-2 sm:col-span-1 sm:row-span-1">
+                  <DiscoverCard album={discovers[2]} />
+                </div>
+                <div className="col-span-2 row-span-2 sm:col-span-1 sm:row-span-1">
+                  <DiscoverCard album={discovers[3]} />
+                </div>
               </>
             )}
           </div>
@@ -64,9 +74,9 @@ const MainContent: NextPage<Props> = ({
         <div className="flex w-full flex-wrap flex-col lg:flex-row">
           <div className="w-full lg:max-w-[calc(100vw_-_609px)] lg:pr-6 py-6 lg:border-r-[1px] lg:border-r-[#78828c21] flex-grow-[999]">
             {/* Trending */}
-            <Trending songs={trendings} />
+            <Trending />
             {/* New */}
-            <New songs={news} />
+            <New />
             {/* Recommand for you */}
             <Recommand />
           </div>

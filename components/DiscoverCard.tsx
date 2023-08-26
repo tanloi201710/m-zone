@@ -25,8 +25,8 @@ const DiscoverCard: NextPage<Props> = ({ album, mark = true }) => {
       onMouseLeave={() => setActionLayer(false)}
     >
       {mark && (
-        <div className="absolute top-0 p-4 z-10">
-          <p className="text-white text-lg font-semibold">{album?.title}</p>
+        <div className="absolute top-0 p-4 z-10 w-full">
+          <p className="text-white text-lg font-semibold truncate">{album?.title}</p>
           <p className="text-[12.8px] hover:text-[#687077] transition-all duration-200 cursor-pointer">
             {album?.artistsNames}
           </p>

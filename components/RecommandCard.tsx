@@ -6,16 +6,13 @@ import { animated, useSpring } from "@react-spring/web";
 import { IoMdPlay } from "react-icons/io";
 import { MdFavorite } from "react-icons/md";
 import { FaEllipsisH } from "react-icons/fa";
+import { ZingSong } from "../types";
 
 interface Props {
-  album: {
-    name: string;
-    artist: string;
-    image: string;
-  };
+  song: ZingSong;
 }
 
-const RecommandCard: NextPage<Props> = ({ album }) => {
+const RecommandCard: NextPage<Props> = ({ song }) => {
   const [actionLayer, setActionLayer] = useState<boolean>(false);
   const styles = useSpring({
     opacity: actionLayer ? 1 : 0,
@@ -30,7 +27,7 @@ const RecommandCard: NextPage<Props> = ({ album }) => {
         <Link href="#">
           <div className="min-w-[60px] min-h-[60px] cursor-pointer mr-3">
             <Image
-              src={`/${album.image}`}
+              src={song?.thumbnail.replace('w165', 'w720')}
               width="100"
               height="100"
               alt=""
@@ -43,11 +40,11 @@ const RecommandCard: NextPage<Props> = ({ album }) => {
         <div className="truncate">
           <Link href="#">
             <p className="text-[14px] truncate font-semibold cursor-pointer pr-16">
-              {album.name}
+              {song?.title}
             </p>
           </Link>
           <p className="text-[12.8px] text-gray-400 hover:text-[#687077] transition-all duration-200 cursor-pointer">
-            {album.artist}
+            {song?.artistsNames}
           </p>
         </div>
       </div>

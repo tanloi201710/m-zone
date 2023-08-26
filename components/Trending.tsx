@@ -1,22 +1,32 @@
-import React from "react";
-import { NextPage } from "next";
+import React, { useState, useEffect } from "react";
 import { Pagination } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { albums } from "../utils/constants";
 import TrendingCard from "./TrendingCard";
-import { ZingSong } from "../types";
+import useFromStore from "../hooks/useFromStore";
+import { useSongsStore } from "../store/useSongsStore";
 
-interface Props {
-  songs: ZingSong[];
-}
+const Trending = () => {
+  const trendings = useFromStore(useSongsStore, (state) => state.trendings);
+  const [width, setWidth] = useState<number>(window.innerWidth);
 
-const Trending: NextPage<Props> = ({ songs }) => {
+  function handleWindowSizeChange() {
+    setWidth(window.innerWidth);
+  }
+  useEffect(() => {
+    window.addEventListener("resize", handleWindowSizeChange);
+    return () => {
+      window.removeEventListener("resize", handleWindowSizeChange);
+    };
+  }, []);
+
+  const isMobile = width <= 768;
+
   return (
     <>
       <h1 className="text-2xl font-bold mb-4">Trending</h1>
       <Swiper
         modules={[Pagination]}
-        slidesPerView={3}
+        slidesPerView={isMobile ? 2 : 3}
         spaceBetween={20}
         loop={true}
         pagination={{
@@ -28,8 +38,9 @@ const Trending: NextPage<Props> = ({ songs }) => {
             );
           },
         }}
-        className="trending-swiper">
-        {songs.map((item, index) => (
+        className="trending-swiper"
+      >
+        {trendings?.map((item, index) => (
           <SwiperSlide key={item.encodeId}>
             <TrendingCard info={item} />
           </SwiperSlide>

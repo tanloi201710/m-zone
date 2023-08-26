@@ -4,6 +4,7 @@ import React, { useCallback, useState } from "react";
 import { SiApplemusic } from "react-icons/si";
 import { collections, mains } from "../utils/constants";
 import ListItem from "./ListItem";
+import { Sheet } from "./Sheet";
 
 const ProfileMenu = ({ profileMenuEl, blur }: any) => {
   return (
@@ -40,7 +41,11 @@ const ProfileMenu = ({ profileMenuEl, blur }: any) => {
   );
 };
 
-const Sidebar = ({ user }: {user: { name: string; image: string; email: string }}) => {
+const Sidebar = ({
+  user,
+}: {
+  user: { name: string; image: string; email: string };
+}) => {
   const active = false;
   const [isOpenProfileMenu, setIsOpenProfileMenu] = useState<boolean>(false);
 
@@ -56,7 +61,7 @@ const Sidebar = ({ user }: {user: { name: string; image: string; email: string }
     }
   }, []);
   return (
-    <div className="w-[200px] hidden lg:block">
+    <div className="w-[200px]">
       {/* Logo */}
       <div className="min-h-[56px] flex items-center">
         <Link href="/">

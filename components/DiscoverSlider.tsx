@@ -16,7 +16,7 @@ interface Props {
 const DiscoverSlider: NextPage<Props> = ({ albums }) => {
   SwiperCore.use([Autoplay]);
   return (
-    <div className="col-span-2 row-span-2">
+    <div className="sm:col-span-2 sm:row-span-2 col-span-4 row-span-4">
       <Swiper
         modules={[Navigation, Pagination]}
         slidesPerView={1}

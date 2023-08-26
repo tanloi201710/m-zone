@@ -15,39 +15,24 @@ interface Props {
 }
 
 const Home: NextPage<Props> = (props) => {
-  const {
-    discovers,
-    trendings,
-    news,
-    recommands,
-    isLoading,
-    error,
-    fetchData,
-  } = useSongsStore();
+  const { discovers, isLoading, error, fetchData } = useSongsStore();
 
   useEffect(() => {
     fetchData();
   }, [fetchData]);
 
-  const isNotData = !discovers || !trendings || !news || !recommands;
+  const isNotData = !discovers;
 
   return (
     <>
       <div className="flex h-[calc(100vh_-_55px)]">
         {/* Sidebar */}
-        <div className="overflow-hidden xl:overflow-auto bg-[#30363c] relative">
+        <div className="overflow-hidden xl:overflow-auto bg-[#30363c] relative hidden lg:block">
           <Sidebar user={props.session.user} />
         </div>
         {/* Main */}
-        <div className="flex flex-col gap-10 overflow-auto flex-1 bg-[#363c43] text-gray-200">
-          {!isNotData && (
-            <MainContent
-              discovers={discovers}
-              trendings={trendings}
-              news={news}
-              recommands={recommands}
-            />
-          )}
+        <div className="flex flex-col sm:gap-10 overflow-auto flex-1 bg-[#363c43] text-gray-200">
+          {!isNotData && <MainContent user={props.session.user} discovers={discovers} />}
         </div>
       </div>
       <Player album={albums[3]} />
