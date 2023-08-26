@@ -26,7 +26,7 @@ const Player: NextPage<Props> = ({ album }) => {
       <div
         tabIndex={0}
         onBlur={() => setOpenPlayList(false)}
-        className="h-[55px] bg-[#363c43] flex text-gray-200 overflow-x-hidden justify-between border-t-[5px] border-t-gray-500/75 md:border-t-0"
+        className="fixed h-[55px] w-full bg-[#363c43] flex text-gray-200 overflow-x-hidden justify-between border-t-[5px] border-t-gray-500/75 md:border-t-0"
       >
         {/* info */}
         <div className="flex min-w-[180px]">

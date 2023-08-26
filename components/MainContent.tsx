@@ -35,7 +35,7 @@ const MainContent: NextPage<Props> = ({ user, discovers }) => {
           </Link>
         </div>
         <Sheet>
-          <SheetTrigger>
+          <SheetTrigger className="mr-4">
             <IoMdMenu size={20} />
           </SheetTrigger>
           <SheetContent side="left" className="p-0 bg-[#363c43]">

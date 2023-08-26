@@ -48,7 +48,7 @@ const RecommandCard: NextPage<Props> = ({ song }) => {
           </p>
         </div>
       </div>
-      <div className="absolute border-b-[1px] border-b-[#78828c20] bottom-0 left-[10px] right-[10px]"></div>
+      <div className="absolute border-b-[1px] border-b-[#78828c20] bottom-0 left-[10px] right-[10px] group-hover:border-b-transparent"></div>
       <animated.div style={styles}>
         {/* play button */}
         <div className="border-[2px] border-white rounded-full absolute top-1/2 left-10 -translate-x-1/2 -translate-y-1/2 hover:bg-white transition-all text-white hover:text-black hover:scale-110 z-30">
