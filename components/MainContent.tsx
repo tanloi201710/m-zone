@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import { albums } from "../utils/constants";
+import { NextPage } from "next";
 import DiscoverCard from "./DiscoverCard";
 import DiscoverSlider from "./DiscoverSlider";
 import Footer from "./Footer";
@@ -9,8 +9,16 @@ import Recommand from "./Recommand";
 import Trending from "./Trending";
 import { SiApplemusic } from "react-icons/si";
 import { IoMdMenu } from "react-icons/io";
+import { ZingAlbum } from "../types";
+import { Sheet, SheetContent, SheetTrigger } from "./Sheet";
+import Sidebar from "./Sidebar";
 
-const MainContent = () => {
+interface Props {
+  discovers: ZingAlbum[];
+  user: { name: string; image: string; email: string };
+}
+
+const MainContent: NextPage<Props> = ({ user, discovers }) => {
   return (
     <>
       <div className="flex lg:hidden justify-between items-center bg-[#3c424a] shadow-lg sticky top-0 z-50">
@@ -26,22 +34,41 @@ const MainContent = () => {
             </div>
           </Link>
         </div>
-        <button className="mr-4">
+        <Sheet>
+          <SheetTrigger>
+          <button className="mr-4">
           <IoMdMenu size={20} />
         </button>
+          </SheetTrigger>
+          <SheetContent side="left" className="p-0 bg-[#363c43]">
+            <Sidebar user={user} />
+          </SheetContent>
+        </Sheet>
       </div>
-      <div className="px-6 pt-6">
+      <div className="px-3 mt-2 sm:px-6 sm:pt-6">
         {/* Discover */}
         <div className="mb-5">
           <h1 className="text-[40px] font-bold mb-4">Discover</h1>
-          <div className="grid grid-cols-4 gap-4">
+          <div className="grid grid-cols-4 gap-2 sm:gap-4">
             {/* discover slide */}
-            <DiscoverSlider props={albums} />
+            <DiscoverSlider albums={discovers} />
             {/* discover cards */}
-            <DiscoverCard album={albums[3]} />
-            <DiscoverCard album={albums[5]} />
-            <DiscoverCard album={albums[6]} />
-            <DiscoverCard album={albums[7]} />
+            {discovers.length > 0 && (
+              <>
+                <div className="col-span-2 row-span-2 sm:col-span-1 sm:row-span-1">
+                  <DiscoverCard album={discovers[0]} />
+                </div>
+                <div className="col-span-2 row-span-2 sm:col-span-1 sm:row-span-1">
+                  <DiscoverCard album={discovers[1]} />
+                </div>
+                <div className="col-span-2 row-span-2 sm:col-span-1 sm:row-span-1">
+                  <DiscoverCard album={discovers[2]} />
+                </div>
+                <div className="col-span-2 row-span-2 sm:col-span-1 sm:row-span-1">
+                  <DiscoverCard album={discovers[3]} />
+                </div>
+              </>
+            )}
           </div>
         </div>
         <div className="flex w-full flex-wrap flex-col lg:flex-row">

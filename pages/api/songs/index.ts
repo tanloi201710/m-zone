@@ -1,5 +1,6 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from "next";
+import { ZingMp3 } from "zingmp3-api-full";
 import { Song } from "../../../src/models";
 import { ISong } from "../../../src/models/Song";
 import { connectToDatabase } from "../../../src/utils";
@@ -20,15 +21,11 @@ export default async function handler(
     // Get data
     case "GET":
       try {
-        if (req.query.id !== "") {
-          const song = await Song.findById(req.query.id);
-          res.status(200).json({ success: true, data: song });
-        }
-        const songs = await Song.find();
-        res.status(200).json({ success: true, data: songs });
+        const response = await ZingMp3.getChartHome();
+        res.status(200).json(response);
       } catch (err) {
         console.log(err);
-        res.status(404).json({ success: false, message: "Song not found!" });
+        res.status(500).json({ success: false, message: "Song not found!" });
       }
       break;
 

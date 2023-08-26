@@ -23,7 +23,11 @@ const Player: NextPage<Props> = ({ album }) => {
   const [isRepeat, setIsRepeat] = useState<boolean>(false);
   return (
     <>
-      <div className="h-[55px] bg-[#363c43] flex text-gray-200 overflow-x-hidden justify-between">
+      <div
+        tabIndex={0}
+        onBlur={() => setOpenPlayList(false)}
+        className="h-[55px] bg-[#363c43] flex text-gray-200 overflow-x-hidden justify-between border-t-[5px] border-t-gray-500/75 md:border-t-0"
+      >
         {/* info */}
         <div className="flex min-w-[180px]">
           <Image
@@ -32,18 +36,20 @@ const Player: NextPage<Props> = ({ album }) => {
             height={60}
             alt=""
             layout="intrinsic"
+            objectFit="cover"
           />
-          <div className="flex flex-col flex-1 border-t-[5px] border-t-gray-500/75 pl-4 justify-center">
+          <div className="flex flex-col flex-1 md:border-t-[5px] border-t-gray-500/75 pl-4 justify-center">
             <p className="text-[11px] font-bold text-gray-200">{album.name}</p>
             <p className="text-[11px] text-gray-400">{album.artist}</p>
           </div>
         </div>
         {/* main */}
-        <div className="hidden flex-1 justify-between items-center border-t-[5px] border-t-gray-500/75 md:flex">
+        <div className="hidden flex-1 justify-between items-center md:border-t-[5px] border-t-gray-500/75 md:flex">
           {/* like */}
           <button
             className="w-7 h-7 rounded-[0.2rem] flex justify-center items-center hover:bg-[#ffffff11] mx-4"
-            onClick={() => setIsLiked((prev) => !prev)}>
+            onClick={() => setIsLiked((prev) => !prev)}
+          >
             {isLiked ? (
               <MdFavorite size={18} />
             ) : (
@@ -56,7 +62,8 @@ const Player: NextPage<Props> = ({ album }) => {
               className={`w-10 h-10 flex justify-center items-center ${
                 isShuffle ? "text-gray-200" : "text-gray-400"
               }`}
-              onClick={() => setIsShuffle((prev) => !prev)}>
+              onClick={() => setIsShuffle((prev) => !prev)}
+            >
               <TbArrowsShuffle size={18} />
             </button>
             <button className="w-10 h-10 flex justify-center items-center">
@@ -72,7 +79,8 @@ const Player: NextPage<Props> = ({ album }) => {
               className={`w-10 h-10 flex justify-center items-center ${
                 isRepeat ? "text-gray-200" : "text-gray-400"
               }`}
-              onClick={() => setIsRepeat((prev) => !prev)}>
+              onClick={() => setIsRepeat((prev) => !prev)}
+            >
               <TbRepeat size={18} />
             </button>
           </div>
@@ -87,7 +95,8 @@ const Player: NextPage<Props> = ({ album }) => {
             {/* playlist */}
             <button
               className="w-10 h-10 flex justify-center items-center"
-              onClick={() => setOpenPlayList((prev) => !prev)}>
+              onClick={() => setOpenPlayList((prev) => !prev)}
+            >
               <BsList size={18} />
             </button>
           </div>
@@ -96,7 +105,8 @@ const Player: NextPage<Props> = ({ album }) => {
         <div className="flex items-center float-right md:hidden">
           <button
             className="w-7 h-7 rounded-[0.2rem] flex justify-center items-center hover:bg-[#ffffff11] mx-4"
-            onClick={() => setIsLiked((prev) => !prev)}>
+            onClick={() => setIsLiked((prev) => !prev)}
+          >
             {isLiked ? (
               <MdFavorite size={18} />
             ) : (
@@ -111,13 +121,14 @@ const Player: NextPage<Props> = ({ album }) => {
           </button>
           <button
             className="w-10 h-10 flex justify-center items-center"
-            onClick={() => setOpenPlayList((prev) => !prev)}>
+            onClick={() => setOpenPlayList((prev) => !prev)}
+          >
             <BsList size={18} />
           </button>
         </div>
       </div>
       {openPlayList && (
-        <div className="fixed bottom-[55px] right-0 w-[480px] h-[240px] overflow-y-auto">
+        <div className="fixed bottom-[55px] right-0 w-screen md:w-[480px] h-[240px] overflow-y-auto">
           <PlayList />
         </div>
       )}
