@@ -40,7 +40,7 @@ export const useSongsStore = create<State & Actions>((set) => ({
         method: "GET",
       });
       const { data, err, msg } = await zingResponse.json();
-      console.log(data);
+      // console.log(data);
       if (err !== 0) {
         set({ isLoading: false, error: msg });
       } else {

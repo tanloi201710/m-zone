@@ -5,7 +5,7 @@ import Player from "../components/Player";
 import Sidebar from "../components/Sidebar";
 import { albums } from "../utils/constants";
 import { useSongsStore } from "../store/useSongsStore";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 interface Props {
   session: {
@@ -16,12 +16,21 @@ interface Props {
 
 const Home: NextPage<Props> = (props) => {
   const { discovers, isLoading, error, fetchData } = useSongsStore();
+  const [isClient, setIsClient] = useState<boolean>(false);
 
   useEffect(() => {
     fetchData();
+    setIsClient(true);
   }, [fetchData]);
 
   const isNotData = !discovers;
+
+  if (!isClient || isLoading)
+    return (
+      <div className="flex items-center justify-center bg-[#30363c] h-screen w-screen">
+        <h1 className="text-white text-4xl">Loading...</h1>
+      </div>
+    );
 
   return (
     <>
@@ -32,7 +41,9 @@ const Home: NextPage<Props> = (props) => {
         </div>
         {/* Main */}
         <div className="flex flex-col sm:gap-10 overflow-auto flex-1 bg-[#363c43] text-gray-200">
-          {!isNotData && <MainContent user={props.session.user} discovers={discovers} />}
+          {!isNotData && (
+            <MainContent user={props.session.user} discovers={discovers} />
+          )}
         </div>
       </div>
       <Player album={albums[3]} />

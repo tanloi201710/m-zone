@@ -1,3 +1,5 @@
+"use client"
+
 import React, { useState, useEffect } from "react";
 import { Pagination } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -7,10 +9,12 @@ import { useSongsStore } from "../store/useSongsStore";
 
 const Trending = () => {
   const trendings = useFromStore(useSongsStore, (state) => state.trendings);
-  const [width, setWidth] = useState<number>(window.innerWidth);
+  const [isMobile, setIsMobile] = useState<boolean>(false);
 
   function handleWindowSizeChange() {
-    setWidth(window.innerWidth);
+    if (window.innerWidth <= 768) {
+      setIsMobile(true);
+    }
   }
   useEffect(() => {
     window.addEventListener("resize", handleWindowSizeChange);
@@ -18,8 +22,6 @@ const Trending = () => {
       window.removeEventListener("resize", handleWindowSizeChange);
     };
   }, []);
-
-  const isMobile = width <= 768;
 
   return (
     <>

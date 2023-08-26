@@ -40,6 +40,7 @@ const DiscoverCard: NextPage<Props> = ({ album, mark = true }) => {
         layout="responsive"
         className="rounded-sm"
         objectFit="cover"
+        priority
       />
       {/* action layer */}
       <animated.div style={styles}>

@@ -36,9 +36,7 @@ const MainContent: NextPage<Props> = ({ user, discovers }) => {
         </div>
         <Sheet>
           <SheetTrigger>
-          <button className="mr-4">
-          <IoMdMenu size={20} />
-        </button>
+            <IoMdMenu size={20} />
           </SheetTrigger>
           <SheetContent side="left" className="p-0 bg-[#363c43]">
             <Sidebar user={user} />

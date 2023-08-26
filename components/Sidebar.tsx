@@ -4,7 +4,7 @@ import React, { useCallback, useState } from "react";
 import { SiApplemusic } from "react-icons/si";
 import { collections, mains } from "../utils/constants";
 import ListItem from "./ListItem";
-import { Sheet } from "./Sheet";
+import { signOut } from "next-auth/react";
 
 const ProfileMenu = ({ profileMenuEl, blur }: any) => {
   return (
@@ -33,7 +33,10 @@ const ProfileMenu = ({ profileMenuEl, blur }: any) => {
         <li className="leading-7 cursor-pointer hover:bg-gray-200 px-4">
           Need help?
         </li>
-        <li className="leading-7 cursor-pointer hover:bg-gray-200 px-4">
+        <li
+          className="leading-7 cursor-pointer hover:bg-gray-200 px-4"
+          onClick={() => signOut()}
+        >
           Sign out
         </li>
       </ul>
